@@ -1,0 +1,538 @@
+/* ==========================================================================
+   FNXP – App Styles (Beautified)
+   --------------------------------------------------------------------------
+   Purpose : Main styles for the app page (disposable.html)
+   Author  : miso
+   Notes   : Grouped by component with clear headings. Duplicate rules merged.
+             Uses HeadingNowVariable + Geist, Fortnite-like buttons, glass UI.
+   ========================================================================== */
+
+/* ==========================================================================   TABLE OF CONTENTS
+   --------------------------------------------------------------------------
+   1) Reset & Base
+   2) Fonts
+   3) Design Tokens (CSS Variables)
+   4) Layout & Body
+   5) Buttons
+   6) Glass Surfaces (global) + Header
+   7) Components
+      7.1) Bot Box
+      7.2) Avatar
+      7.3) Alert (Glass)
+      7.4) Card Footer (CTA row)
+      7.5) Tiny Footer Note + Effects
+      7.6) Logo & Title
+      7.7) “Powered by” Badge
+   8) Utilities
+   9) Responsive (≤480px)
+   10) Bot Name Cluster
+   11) Chapter Badge
+\============================================================================ */
+
+/* ========== 1) RESET & BASE ============================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+}
+a {
+  text-decoration: none;
+}
+
+/* ========== 2) FONTS ===================================================== */
+/* Fortnite Heading Font */
+@font-face {
+  font-family: HeadingNowVariable;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  src: url("HeadingNowVariable.woff2") format("woff2");
+}
+
+/* ========== 3) DESIGN TOKENS (CSS VARIABLES) ============================= */
+:root {
+  --bg: #0e0e0e;
+  --fg: #e6e9ef;
+  --muted: #97a1b3;
+
+  --radius: 18px;
+  --radius-md: 13px;
+
+  --btn-primary: #d3d2d8;
+  --btn-primary-hover: #ffffff;
+  --btn-primary-text: #100f17;
+
+  --btn-discord: #1db954;
+  --outline-hover: rgba(255, 255, 255, 0.8);
+}
+
+/* ========== 4) LAYOUT & BODY ============================================ */
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 100px 100px;
+  background-position: center;
+  color: var(--fg);
+  font-family: "Geist", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto; /* allow vertical scroll on small screens */
+}
+
+/* ========== 5) BUTTONS =================================================== */
+/* Fortnite-style buttons */
+.btn-primary,
+.btn-discord {
+  border-radius: var(--radius-md);
+  line-height: 1.9;
+  font-family: HeadingNowVariable, sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-variation-settings: "wdth" 650, "wght" 725;
+  cursor: pointer;
+  outline: 0 solid transparent;
+  transition: outline-color 0.15s, outline-offset 0.15s, outline-width 0.15s;
+  padding: 4px 16px;
+}
+.btn-primary {
+  background: var(--btn-primary);
+  border-color: var(--btn-primary);
+  color: #000;
+}
+.btn-primary:hover {
+  background: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
+  color: #000;
+  outline-color: var(--outline-hover);
+  outline-offset: 3px;
+  outline-width: 3px;
+}
+.btn-discord {
+  background: var(--btn-discord);
+  border-color: var(--btn-discord);
+  color: #000;
+}
+.btn-discord:hover {
+  background: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
+  color: #000;
+  outline-color: var(--outline-hover);
+  outline-offset: 3px;
+  outline-width: 3px;
+}
+/* Tame Bootstrap's active press effect */
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  color: var(--btn-primary-text);
+  background-color: var(--btn-primary-hover);
+  border-color: transparent;
+}
+
+/* ========== 6) GLASS SURFACES + HEADER ================================== */
+/* Generic “glass” container (transparent base, no border) */
+.glass {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Top header variant */
+.header {
+  background: #070709;
+  border: 1px solid #242426;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  border-radius: none;
+}
+
+/* ========== 7) COMPONENTS =============================================== */
+/* 7.1) Bot Box (behind avatar/name) */
+.bot-box {
+  background: #131416;
+  border: 2px dashed #323337;
+  backdrop-filter: blur(50px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-radius: 8px;
+  gap: 4px;
+  padding: 12px 24px;
+}
+
+/* 7.2) Avatar */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 10%;
+  outline: 2px solid #1db954;
+  overflow: hidden;
+  background: transparent;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block !important;
+}
+
+/* 7.3) Alert in glass style (red) */
+.alert.glass {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 99, 99, 0.12);
+  color: #ff003d;
+  background: rgb(48, 10, 10);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* 7.4) Card footer (CTA row inside glass) */
+.glass-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #1db954;
+  padding: 14px 18px;
+  margin-top: 20px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.12));
+}
+.glass-footer .footer-text {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.glass-footer .btn-discord {
+  margin-left: 1rem;
+}
+
+/* 7.5) Tiny footer note (text left, icon right) */
+.footer-note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.footer-note a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+}
+.footer-note a:hover {
+  color: #1db954;
+  filter: brightness(1.2);
+  opacity: 1;
+}
+/* Icon hover (FNLB + FNXP) */
+.footer-note img {
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+.footer-note a:hover img {
+  filter: brightness(1.3) drop-shadow(0 0 4px rgba(208, 237, 17, 0.6));
+  opacity: 1;
+}
+/* Heart pulse */
+.footer-note i.fa-heart {
+  color: #1db954;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.85;
+  }
+}
+
+/* 7.6) Logo & Title */
+.logo {
+  max-width: 50px;
+}
+.title {
+  font-variation-settings: "wdth" 650, "wght" 725;
+  font-family: HeadingNowVariable, sans-serif;
+  line-height: 1.2;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 22px;
+  color: #fff;
+}
+
+/* 7.7) “Powered by” badge */
+.footer-powered {
+  font-size: 0.875em;
+  letter-spacing: 1.5px;
+  color: var(--muted) !important;
+  text-transform: uppercase;
+}
+
+/* ========== 8) UTILITIES ================================================= */
+.brand {
+  letter-spacing: 0.5px;
+}
+.muted {
+  color: var(--muted);
+}
+.max-w-720 {
+  max-width: 720px;
+}
+
+/* ========== 9) RESPONSIVE (≤480px) ====================================== */
+@media (max-width: 480px) {
+  .max-w-720 {
+    max-width: 100%;
+  }
+  .glass {
+    padding: 16px !important;
+  }
+  .glass-box {
+    padding: 12px;
+  }
+  .avatar {
+    width: 72px;
+    height: 72px;
+  }
+  /* make CTAs comfy on phones */
+  .btn-primary,
+  .btn-discord {
+    width: 100%;
+  }
+  .glass-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    text-align: center;
+    padding: 12px;
+  }
+  .glass-footer .btn-discord {
+    margin-left: 0;
+  }
+  .footer-note {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 8px 12px;
+  }
+}
+
+/* ========== 10) BOT NAME CLUSTER ======================================== */
+.botname {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: HeadingNowVariable, sans-serif;
+  font-size: 26px;
+  font-variation-settings: "wdth" 600, "wght" 700;
+  text-transform: capitalize;
+  color: #fff;
+  letter-spacing: 0.3px;
+  margin: 0.5rem 0 0;
+}
+.botname-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: currentColor; /* makes icon match text color */
+  display: block;
+}
+.botname span {
+  line-height: 1.2;
+}
+
+/* ========== 11) CHAPTER BADGE =========================================== */
+.chapter {
+  font-family: HeadingNowVariable, sans-serif;
+  font-size: 12px;
+  font-variation-settings: "wdth" 600, "wght" 700;
+  text-transform: capitalize;
+  color: #13cf4c;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #13cf4c;
+  border-radius: 30px;
+  padding: 2px 10px;
+}
+/* ========== 12) Page-load Reveal + Skeleton ============================== */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+    transition:
+      opacity 420ms ease,
+      transform 420ms ease,
+      filter 420ms ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Shimmer skeleton */
+:root {
+  --skeleton-base: rgba(255,255,255,0.06);
+  --skeleton-sheen: rgba(255,255,255,0.16);
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--skeleton-base);
+  border-radius: 10px;
+  color: transparent !important; /* hide text while loading */
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--skeleton-sheen) 45%,
+    transparent 90%);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Text & circle variants */
+.skeleton.text { height: 1em; line-height: 1; border-radius: 6px; }
+.skeleton.circle { border-radius: 50%; }
+
+/* Avatar skeleton that matches your .avatar size */
+.avatar.skeleton {
+  background: var(--skeleton-base);
+  outline-color: transparent; /* keep it calm while loading */
+}
+.avatar.skeleton img { opacity: 0; }
+
+/* Bot name line skeleton that matches #botname */
+.botname.skeleton {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.botname.skeleton .botname-icon { opacity: 0.2; }
+.botname.skeleton span { visibility: hidden; }
+
+/* CTA button skeleton size helper */
+.btn.skeleton {
+  border: 0;
+  min-width: 160px;
+  height: 44px;
+  padding: 0;
+}
+/* ========== Toast styling (glass + glow) =================== */
+.toast {
+  background: rgba(30, 30, 40, 0.6); /* translucent dark glass */
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  border: 1px solid #13cf4c;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35), 0 0 8px rgba(125, 125, 255, 0.25);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  animation: toastFadeIn 0.35s ease;
+}
+
+/* Toast body spacing */
+.toast-body {
+  padding: 0.75rem 1rem;
+    font-variation-settings: "wdth" 650, "wght" 725;
+  font-family: HeadingNowVariable, sans-serif;
+  line-height: 1.2;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+/* Close button on glass */
+.toast .btn-close {
+  filter: invert(1) grayscale(100%) brightness(180%);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.toast .btn-close:hover {
+  opacity: 1;
+}
+
+/* Animation */
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Optional success/warning/error accent glows */
+.toast.success {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35), 0 0 12px rgba(0,255,128,0.45);
+}
+.toast.warning {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35), 0 0 12px rgba(255,200,0,0.45);
+}
+.toast.error {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35), 0 0 12px rgba(255,80,80,0.45);
+}
+/* Season pill */
+.season-pill{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.5rem .85rem;border-radius:999px;
+  background:transparent;
+  backdrop-filter: blur(8px) saturate(140%); -webkit-backdrop-filter: blur(8px) saturate(140%);
+  border:1px solid rgba(255,255,255,.12); color:#fff;
+  font-size:.95rem; line-height:1.2;
+}
+.season-pill .code{
+      font-variation-settings: "wdth" 650, "wght" 725;
+  font-family: HeadingNowVariable, sans-serif;
+  line-height: 1.2;
+  text-transform: uppercase;
+  padding:.1rem .45rem;border-radius:.5rem;
+  
+}
+.season-pill .code span{
+  opacity:0.5;
+}
+.season-pill .name{opacity:.9}
+.season-pill .dot{
+  width:.55rem;height:.55rem;border-radius:50%;
+  background: #13cf4c; /* green */
+  box-shadow: 0 0 0 .2rem rgba(52,211,153,.15), 0 0 .65rem rgba(52,211,153,.8);
+  animation: dotPulse 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce){
+  .season-pill{transition:none}
+  .season-pill .dot{animation:none}
+}
+@keyframes dotPulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.25);opacity:.8}
+}

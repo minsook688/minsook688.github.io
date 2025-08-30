@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="875" viewBox="0 0 860 875" role="img" aria-label="Loading">
+
+<style>
+  :root { --stroke: currentColor; --speed: 2.2s; }
+  svg { overflow: visible; }
+  .g { fill: none; stroke: var(--stroke); vector-effect: non-scaling-stroke; }
+  .g path { stroke-linecap: round; stroke-linejoin: round; }
+  @keyframes dash { from { stroke-dashoffset: var(--len); } to { stroke-dashoffset: 0; } }
+</style>
+<g class="g" transform="translate(430.000,437.500) rotate(0.000) scale(1.0000,1.0000)" style="--stroke:#ffffff; stroke-width:4;">
+<path d="M -31.000 101.000 L 13.000 217.000 L -54.000 174.000 L -64.000 103.000 L -83.000 154.000 L -126.000 126.000 L -99.000 87.000 L -144.000 27.000 L -85.000 27.000 L -62.000 79.000 L -49.000 28.000 L 15.000 28.000 Z" style="--len:822.32; stroke-dasharray:822.32; stroke-dashoffset:822.32; animation: dash var(--speed) ease-in-out 1.09s infinite alternate;" />
+<path d="M 134.000 93.000 L 89.000 109.000 L 93.000 71.000 L 144.000 62.000 Z" style="--len:170.33; stroke-dasharray:170.33; stroke-dashoffset:170.33; animation: dash var(--speed) ease-in-out 1.21s infinite alternate;" />
+<path d="M 31.000 28.000 L 32.000 218.000 L 85.000 183.000 L 90.000 148.000 L 170.000 127.000 L 190.000 29.000 Z" style="--len:630.61; stroke-dasharray:630.61; stroke-dashoffset:630.61; animation: dash var(--speed) ease-in-out 1.33s infinite alternate;" />
+<path d="M 17.000 -131.000 L -95.000 -93.000 L -92.000 -76.000 L 16.000 -94.000 L 15.000 -38.000 L -83.000 -18.000 L -77.000 10.000 L -147.000 8.000 L -171.000 -132.000 L 17.000 -189.000 Z" style="--len:896.21; stroke-dasharray:896.21; stroke-dashoffset:896.21; animation: dash var(--speed) ease-in-out 1.45s infinite alternate;" />
+<path d="M 217.000 -132.000 L 193.000 12.000 L 126.000 10.000 L 97.000 -36.000 L 99.000 10.000 L 31.000 9.000 L 30.000 -189.000 L 92.000 -170.000 L 145.000 -93.000 L 154.000 -151.000 Z" style="--len:862.27; stroke-dasharray:862.27; stroke-dashoffset:862.27; animation: dash var(--speed) ease-in-out 1.57s infinite alternate;" />
+<path d="M 208.000 154.000 L 24.920 270.470 L 24.920 271.000 L 24.500 270.730 L 24.080 271.000 L 24.080 270.470 L -159.000 154.000 L -218.000 -155.000 L 24.080 -235.720 L 24.080 -236.000 L 24.500 -235.860 L 24.920 -236.000 L 24.920 -235.720 L 267.000 -155.000 Z" style="--len:1577.01; stroke-dasharray:1577.01; stroke-dashoffset:1577.01; animation: dash var(--speed) ease-in-out 1.69s infinite alternate;" />
+<path d="M 25.000 -277.000 L -258.000 -182.000 L -186.000 174.000 L 25.000 303.000 L 236.000 174.000 L 308.000 -182.000 Z" style="--len:1818.07; stroke-dasharray:1818.07; stroke-dashoffset:1818.07; animation: dash var(--speed) ease-in-out 1.81s infinite alternate;" />
+</g>
+<g class="g" transform="translate(430.000,437.500) rotate(0.000) scale(1.0000,1.0000)" style="--stroke:#ababab; stroke-width:2;">
+<path d="M -31.000 101.000 L 13.000 217.000 L -54.000 174.000 L -64.000 103.000 L -83.000 154.000 L -126.000 126.000 L -99.000 87.000 L -144.000 27.000 L -85.000 27.000 L -62.000 79.000 L -49.000 28.000 L 15.000 28.000 Z" style="--len:822.32; stroke-dasharray:822.32; stroke-dashoffset:822.32; animation: dash var(--speed) ease-in-out 2.18s infinite alternate;" />
+<path d="M 134.000 93.000 L 89.000 109.000 L 93.000 71.000 L 144.000 62.000 Z" style="--len:170.33; stroke-dasharray:170.33; stroke-dashoffset:170.33; animation: dash var(--speed) ease-in-out 2.30s infinite alternate;" />
+<path d="M 31.000 28.000 L 32.000 218.000 L 85.000 183.000 L 90.000 148.000 L 170.000 127.000 L 190.000 29.000 Z" style="--len:630.61; stroke-dasharray:630.61; stroke-dashoffset:630.61; animation: dash var(--speed) ease-in-out 2.42s infinite alternate;" />
+<path d="M 17.000 -131.000 L -95.000 -93.000 L -92.000 -76.000 L 16.000 -94.000 L 15.000 -38.000 L -83.000 -18.000 L -77.000 10.000 L -147.000 8.000 L -171.000 -132.000 L 17.000 -189.000 Z" style="--len:896.21; stroke-dasharray:896.21; stroke-dashoffset:896.21; animation: dash var(--speed) ease-in-out 2.54s infinite alternate;" />
+<path d="M 217.000 -132.000 L 193.000 12.000 L 126.000 10.000 L 97.000 -36.000 L 99.000 10.000 L 31.000 9.000 L 30.000 -189.000 L 92.000 -170.000 L 145.000 -93.000 L 154.000 -151.000 Z" style="--len:862.27; stroke-dasharray:862.27; stroke-dashoffset:862.27; animation: dash var(--speed) ease-in-out 2.66s infinite alternate;" />
+<path d="M 208.000 154.000 L 24.920 270.470 L 24.920 271.000 L 24.500 270.730 L 24.080 271.000 L 24.080 270.470 L -159.000 154.000 L -218.000 -155.000 L 24.080 -235.720 L 24.080 -236.000 L 24.500 -235.860 L 24.920 -236.000 L 24.920 -235.720 L 267.000 -155.000 Z" style="--len:1577.01; stroke-dasharray:1577.01; stroke-dashoffset:1577.01; animation: dash var(--speed) ease-in-out 2.78s infinite alternate;" />
+<path d="M 25.000 -277.000 L -258.000 -182.000 L -186.000 174.000 L 25.000 303.000 L 236.000 174.000 L 308.000 -182.000 Z" style="--len:1818.07; stroke-dasharray:1818.07; stroke-dashoffset:1818.07; animation: dash var(--speed) ease-in-out 2.90s infinite alternate;" />
+</g>
+<g class="g" transform="translate(430.000,437.500) rotate(0.000) scale(1.0000,1.0000)" style="--stroke:#1db954; stroke-width:6;">
+<path d="M -31.000 101.000 L 13.000 217.000 L -54.000 174.000 L -64.000 103.000 L -83.000 154.000 L -126.000 126.000 L -99.000 87.000 L -144.000 27.000 L -85.000 27.000 L -62.000 79.000 L -49.000 28.000 L 15.000 28.000 Z" style="--len:822.32; stroke-dasharray:822.32; stroke-dashoffset:822.32; animation: dash var(--speed) ease-in-out 0.00s infinite alternate;" />
+<path d="M 134.000 93.000 L 89.000 109.000 L 93.000 71.000 L 144.000 62.000 Z" style="--len:170.33; stroke-dasharray:170.33; stroke-dashoffset:170.33; animation: dash var(--speed) ease-in-out 0.12s infinite alternate;" />
+<path d="M 31.000 28.000 L 32.000 218.000 L 85.000 183.000 L 90.000 148.000 L 170.000 127.000 L 190.000 29.000 Z" style="--len:630.61; stroke-dasharray:630.61; stroke-dashoffset:630.61; animation: dash var(--speed) ease-in-out 0.24s infinite alternate;" />
+<path d="M 17.000 -131.000 L -95.000 -93.000 L -92.000 -76.000 L 16.000 -94.000 L 15.000 -38.000 L -83.000 -18.000 L -77.000 10.000 L -147.000 8.000 L -171.000 -132.000 L 17.000 -189.000 Z" style="--len:896.21; stroke-dasharray:896.21; stroke-dashoffset:896.21; animation: dash var(--speed) ease-in-out 0.36s infinite alternate;" />
+<path d="M 217.000 -132.000 L 193.000 12.000 L 126.000 10.000 L 97.000 -36.000 L 99.000 10.000 L 31.000 9.000 L 30.000 -189.000 L 92.000 -170.000 L 145.000 -93.000 L 154.000 -151.000 Z" style="--len:862.27; stroke-dasharray:862.27; stroke-dashoffset:862.27; animation: dash var(--speed) ease-in-out 0.48s infinite alternate;" />
+<path d="M 208.000 154.000 L 24.920 270.470 L 24.920 271.000 L 24.500 270.730 L 24.080 271.000 L 24.080 270.470 L -159.000 154.000 L -218.000 -155.000 L 24.080 -235.720 L 24.080 -236.000 L 24.500 -235.860 L 24.920 -236.000 L 24.920 -235.720 L 267.000 -155.000 Z" style="--len:1577.01; stroke-dasharray:1577.01; stroke-dashoffset:1577.01; animation: dash var(--speed) ease-in-out 0.60s infinite alternate;" />
+<path d="M 25.000 -277.000 L -258.000 -182.000 L -186.000 174.000 L 25.000 303.000 L 236.000 174.000 L 308.000 -182.000 Z" style="--len:1818.07; stroke-dasharray:1818.07; stroke-dashoffset:1818.07; animation: dash var(--speed) ease-in-out 0.72s infinite alternate;" />
+</g>
+
+</svg>

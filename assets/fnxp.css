@@ -1,0 +1,165 @@
+/* ==========================================================================
+   FNXP – Loader/Splash Styles (Beautified)
+   --------------------------------------------------------------------------
+   Purpose : Styles for loader.html (splash screen)
+   Author  : miso
+   Notes   : Keeps original visuals; adds clear grouping & comments.
+   ========================================================================== */
+
+/* ========== 1) FONTS ===================================================== */
+@font-face {
+  font-family: HeadingNowVariable;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(https://shinra.lol/HeadingNowVariable.woff2) format("woff2");
+}
+
+/* ========== 2) THEME TOKENS ============================================= */
+:root {
+  --bg-color: #0e0e0e;
+  --panel-color: rgba(255, 255, 255, 0.01);
+  --border-color: rgba(255, 255, 255, 0.06);
+  --awso-fortnite-style: italic;
+  --font-heading: "HeadingNowVariable", sans-serif;
+  --font-variation-light-wide: "wdth" 600, "wght" 700;
+  --font-weight-bold: 700;
+  --font-weight-btn: 725;
+}
+
+/* ========== 3) RESET ===================================================== */
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+}
+html,
+body {
+  height: 100%;
+}
+
+/* ========== 4) BASE LAYOUT ============================================== */
+body {
+  background-color: var(--bg-color);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 100px 100px;
+  background-position: center;
+  color: #e6e6e6;
+  font-family: "Geist", sans-serif;
+}
+
+/* ========== 5) KEYFRAMES ================================================= */
+@keyframes fadeOpacity {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+@keyframes fill {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+@keyframes pulseBar {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+}
+@keyframes pulseAura {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes rotateOffset {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -265.2; }
+}
+@keyframes growShrink {
+  0%, 100% { stroke-dasharray: 5 251.2; }
+  25%      { stroke-dasharray: 60 251.2; }
+  50%      { stroke-dasharray: 130 251.2; }
+  75%      { stroke-dasharray: 60 251.2; }
+}
+
+/* ========== 6) BRANDING ELEMENTS ======================================== */
+/* Title with Fortnite vibe */
+.redirecting-title {
+  font-variation-settings: "wdth" 650, "wght" var(--font-weight-btn);
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 22px;
+  color: #fff;
+  animation: fadeOpacity 1s infinite;
+}
+/* Logo size */
+.logo {
+  max-width: 240px;
+  width: 60vw;
+}
+
+/* ========== 7) PROGRESS BAR (if used) =================================== */
+.progress {
+  height: 12px !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 4px #00000080;
+}
+.progress-bar {
+  background: linear-gradient(90deg, #c690ef, #8e2de2);
+  box-shadow: 0 0 30px rgba(198, 144, 239, 0.6);
+  border-radius: 8px;
+  width: 0;
+  animation: fill 6s linear forwards, pulseBar 1s infinite;
+}
+
+/* ========== 8) TYPOGRAPHY HELPERS ======================================= */
+.text-secondary { font-weight: 600; }
+
+/* ========== 9) PULSATING TOP AURA ======================================= */
+.pulse-gradient {
+  position: fixed;
+  top: -80px;            /* move upward so glow fades nicely */
+  left: 50%;
+  transform: translateX(-80%);
+  width: 140%;
+  height: 100px;
+  background: radial-gradient(
+    circle at top center,
+    #1db954 0%,
+    rgba(0, 0, 0, 0) 60%,
+    transparent 100%
+  );
+  filter: blur(100px);   /* soft glow aura */
+  animation: pulseAura 3s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ========== 10) SPINNER ================================================== */
+.spinner .throbber {
+  width: 24px;
+  height: 24px;
+  animation: spin 1.6s linear infinite;
+}
+.spinner .throbber .arc {
+  fill: none;
+  stroke-width: 20;
+  stroke-dasharray: 5 251.2;
+  stroke-dashoffset: 0;
+  animation:
+    rotateOffset 0.9s linear infinite,
+    growShrink 0.9s ease-in-out infinite;
+}
+/* ========== 11) TOAST ================================================== */
