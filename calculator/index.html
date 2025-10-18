@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XP Messages Calculator</title>
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" data-bs-theme="dark">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --card: rgba(20, 24, 34, .75);
+      --border: rgba(255,255,255,.08);
+      --text: #e7edf6;
+      --muted: #9fb0c3;
+      --accent: #6ea8fe;
+      --good: #00d68f;
+      --warn: #ffb020;
+      --chip: rgba(255,255,255,.06);
+      --select-bg: #0f1524;
+      --select-opt-bg: #0c1220;
+      --select-border: rgba(255,255,255,.16);
+    }
+
+    html, body { height: 100%; }
+    body{
+      background: radial-gradient(1200px 600px at 10% -10%, #1a2541 0%, transparent 60%),
+                  radial-gradient(900px 600px at 100% 10%, #1f2a3d 0%, transparent 60%),
+                  linear-gradient(180deg, #0b0f17 0%, #0f1422 100%);
+      color: var(--text);
+    }
+
+    .app-shell{ max-width: 1100px; }
+
+    .glass-card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 18px;
+    }
+
+    .hero{
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(110,168,254,.18), rgba(111,76,255,.18));
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 20px;
+    }
+
+    .kicker{ color: var(--muted); letter-spacing: .12em; text-transform: uppercase; font-weight: 700; font-size: .76rem; }
+    .muted{ color: var(--muted); }
+    .mono{ font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    .tier-chip{ background: var(--chip); border: 1px solid var(--border); border-radius: 9999px; padding: .35rem .7rem; display:inline-flex; align-items:center; gap:.5rem; font-weight:600; }
+
+    .form-control, .form-select{ background: var(--select-bg); border: 1px solid var(--select-border); color:var(--text); color-scheme: dark; }
+    .form-select option{ background: var(--select-opt-bg); color: var(--text); }
+    .input-group-text{ background: var(--select-bg); border: 1px solid var(--select-border); color: var(--muted); }
+
+    .switch .form-check-input{ cursor:pointer; }
+
+    .big-number{ font-size: clamp(2rem, 4.2vw, 3.2rem); line-height:1; font-weight: 800; letter-spacing: -0.02em; }
+
+    .stat { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 14px; padding: .85rem 1rem; }
+    .stat .label{ color: var(--muted); font-size:.85rem; }
+    .stat .val{ font-weight:700; }
+
+    .table-dark{ --bs-table-bg: transparent; --bs-table-striped-bg: rgba(255,255,255,.03); --bs-table-hover-bg: rgba(255,255,255,.04); }
+
+    .footer-hint{ color:#8aa3be; font-size:.9rem }
+  </style>
+</head>
+<body>
+  <main class="container py-4 app-shell">
+
+    <!-- Hero/Header -->
+    <section class="hero p-4 p-md-5 mb-4">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div>
+          <div class="kicker">BYMISO CALCULATOR</div>
+          <h1 class="display-6 fw-bold mb-1">XP Messages Calculator</h1>
+        </div>
+        <div class="text-end">
+          <span id="tierBadge" class="tier-chip">
+            <img id="tierImg" src="common.png" width="24" height="24" alt="tier" style="border-radius:6px;"/>
+            <span id="tierText">Tier: –</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <div class="row g-4">
+      <!-- Controls -->
+      <div class="col-12 col-lg-5">
+        <div class="glass-card p-4 h-100">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="tier" class="form-label"><img src="rank.png" onerror="this.style.display='none'" width="20" height="20" class="me-1" alt=""/> Tier</label>
+              <select class="form-select form-select-lg" id="tier"></select>
+              <div class="form-text muted">Multiplier and unlock level are shown next to each tier.</div>
+            </div>
+            <div class="col-6">
+              <label for="currentLevel" class="form-label"><img src="level.png" width="20" height="20" class="me-1" alt=""/> Current level</label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text"><i class="bi bi-person-lines-fill"></i></span>
+                <input type="number" class="form-control" id="currentLevel" min="0" value="0" />
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="targetLevel" class="form-label"><img src="bullseye.png" onerror="this.style.display='none'" width="20" height="20" class="me-1" alt=""/> Target level</label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text"><i class="bi bi-bullseye"></i></span>
+                <input type="number" class="form-control" id="targetLevel" min="1" value="10" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check form-switch switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="serverSupercharge">
+                <label class="form-check-label" for="serverSupercharge"><img src="supercharged.png" width="20" height="20" class="me-1" alt=""/> Server Supercharge ×2 active?</label>
+              </div>
+            </div>
+            <div class="col-12 d-grid">
+              <button class="btn btn-primary btn-lg" id="calcBtn"><i class="bi bi-calculator"></i> Calculate</button>
+            </div>
+          </div>
+          <hr class="my-4">
+          <div id="eligibility" class="small"></div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="col-12 col-lg-7">
+        <div class="glass-card p-4 h-100 d-flex flex-column">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h2 class="h5 mb-0">Result</h2>
+            <span class="kicker">Live as you type</span>
+          </div>
+          <div class="big-number mono mb-2" id="result">—</div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-6 col-md-3">
+              <div class="stat h-100">
+                <div class="label"><img src="xpicon.png" width="16" height="16" class="me-1" alt=""/> Effective XP / msg</div>
+                <div class="val mono" id="stat-xpmsg">—</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat h-100">
+                <div class="label">Total XP needed</div>
+                <div class="val mono" id="stat-totalxp">—</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat h-100">
+                <div class="label"><img src="multiplier.png" width="16" height="16" class="me-1" alt=""/> Tier multiplier</div>
+                <div class="val mono" id="stat-mult">—</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat h-100">
+                <div class="label">Baseline XP/msg</div>
+                <div class="val mono" id="stat-base">17.5</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-grow-1">
+            <div id="breakdown" class="small"></div>
+          </div>
+
+          <div class="footer-hint mt-3"><i class="bi bi-info-circle"></i> This tool assumes average XP per message and no cooldown—exactly like your <code>XPEngine</code>.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ===== Constants matching xp.ts =====
+    const TIERS = [
+      { name: "Celestial", roleId: "1429113250984755220", color: 0x00d8ff, multiplier: 3.0, minLevel: 100 },
+      { name: "Mythic (Booster)", roleId: "1415906369072009246", color: 0xd300ff, multiplier: 2.5, minLevel: 0 },
+      { name: "Misoteric", roleId: "1415834136370872411", color: 0xf84747, multiplier: 2.0, minLevel: 50 },
+      { name: "Legendary", roleId: "1427102081201864816", color: 0xffbb00, multiplier: 1.8, minLevel: 40 },
+      { name: "Epic", roleId: "1427102005448540261", color: 0xe1a6e9, multiplier: 1.5, minLevel: 30 },
+      { name: "Rare", roleId: "1427101952176816319", color: 0xb6fdff, multiplier: 1.3, minLevel: 20 },
+      { name: "Uncommon", roleId: "1427101760333549568", color: 0xfff7c9, multiplier: 1.2, minLevel: 10 },
+      { name: "Common", roleId: "1415864103490027692", color: 0xdafffd, multiplier: 1.0, minLevel: 0 },
+    ];
+
+    const AVG_XP_PER_MESSAGE = 17.5; // from xp.ts
+
+    // Optional images in your folder
+    const TIER_IMG = {
+      'Celestial': 'celestial.png',
+      'Misoteric': 'misov.png',
+      'Common': 'common.png',
+      'Mythic (Booster)': 'mythic.png', // if absent, we'll fall back gracefully
+      'Legendary': 'legendary.png',
+      'Epic': 'epic.png',
+      'Rare': 'rare.png',
+      'Uncommon': 'uncommon.png',
+    };
+
+    function messagesToNextLevel(L) {
+      if (L <= 19) return 20;
+      if (L <= 29) return 80;
+      if (L <= 39) return 160;
+      if (L <= 49) return 380;
+      return 1650;
+    }
+
+    function xpToNextLevel(L) { return Math.round(messagesToNextLevel(L) * AVG_XP_PER_MESSAGE); }
+
+    function xpForLevel(level) {
+      if (level <= 0) return 0;
+      let total = 0;
+      for (let L = 0; L < level; L++) total += xpToNextLevel(L);
+      return total;
+    }
+
+    function totalXpBetweenLevels(cur, target) { return target <= cur ? 0 : (xpForLevel(target) - xpForLevel(cur)); }
+
+    function effectiveXpPerMessage(multiplier, serverSupercharge) {
+      let mult = multiplier;
+      if (serverSupercharge) mult *= 2.0; // server-wide event
+      return AVG_XP_PER_MESSAGE * mult;
+    }
+
+    function ceilDiv(a, b) { return Math.ceil(a / b); }
+
+    // ===== UI wiring =====
+    const tierSel = document.getElementById('tier');
+    const currentLevelEl = document.getElementById('currentLevel');
+    const targetLevelEl = document.getElementById('targetLevel');
+    const serverSuperchargeEl = document.getElementById('serverSupercharge');
+    const calcBtn = document.getElementById('calcBtn');
+    const resultEl = document.getElementById('result');
+    const breakdownEl = document.getElementById('breakdown');
+    const tierBadgeEl = document.getElementById('tierBadge');
+    const tierImgEl = document.getElementById('tierImg');
+    const tierTextEl = document.getElementById('tierText');
+    const eligibilityEl = document.getElementById('eligibility');
+
+    // Populate tier select
+    TIERS.forEach((t, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = `${t.name} — ×${t.multiplier.toFixed(2)} (min ${t.minLevel})`;
+      tierSel.appendChild(opt);
+    });
+
+    // Default tier
+    tierSel.value = TIERS.findIndex(t => t.name.includes('Common'));
+
+    function updateTierBadge(tier, superOn){
+      const src = TIER_IMG[tier.name] || 'common.png';
+      tierImgEl.src = src;
+      tierImgEl.onerror = () => { tierImgEl.style.display = 'none'; };
+      tierImgEl.style.display = 'inline-block';
+      tierTextEl.innerHTML = `${superOn ? '<img src=\"supercharged.png\" width=\"18\" height=\"18\" class=\"me-1\" alt=\"\"/>' : ''}Tier: ${tier.name}`;
+    }
+
+    function updateEligibility(){
+      const t = TIERS[+tierSel.value];
+      const cur = +currentLevelEl.value || 0;
+      const ok = cur >= t.minLevel || t.name.includes('Mythic');
+      eligibilityEl.innerHTML = ok
+        ? `<span class="text-success"><i class="bi bi-check-circle"></i> Eligible for <strong>${t.name}</strong> at your current level (${cur}).</span>`
+        : `<span class="text-warning"><i class="bi bi-exclamation-triangle"></i> ${t.name} unlocks at <strong>${t.minLevel}</strong>. You can still plan with its multiplier.</span>`;
+    }
+
+    function calc(){
+      const cur = Math.max(0, Math.floor(+currentLevelEl.value || 0));
+      const target = Math.max(0, Math.floor(+targetLevelEl.value || 0));
+      const tier = TIERS[+tierSel.value];
+      const superOn = !!serverSuperchargeEl.checked;
+
+      updateTierBadge(tier, superOn);
+
+      if (target <= cur){
+        resultEl.textContent = 'Target level must be higher than current level.';
+        breakdownEl.textContent = '';
+        document.getElementById('stat-xpmsg').textContent = '—';
+        document.getElementById('stat-totalxp').textContent = '—';
+        document.getElementById('stat-mult').textContent = '—';
+        return;
+      }
+
+      const totalXP = totalXpBetweenLevels(cur, target);
+      const xpPerMsg = effectiveXpPerMessage(tier.multiplier, superOn);
+      const msgs = ceilDiv(totalXP, xpPerMsg);
+
+      resultEl.textContent = `${msgs.toLocaleString()} messages needed`;
+
+      // Stats tiles
+      document.getElementById('stat-xpmsg').textContent = xpPerMsg.toFixed(2);
+      document.getElementById('stat-totalxp').textContent = totalXP.toLocaleString();
+      document.getElementById('stat-mult').textContent = `×${tier.multiplier.toFixed(2)}${superOn ? ' • ×2 event' : ''}`;
+
+      // Breakdown table (no "L" prefix)
+      let tmp = cur;
+      const rows = [];
+      while (tmp < target) {
+        const xp = xpToNextLevel(tmp);
+        rows.push({ L: tmp, xp, msgs: ceilDiv(xp, xpPerMsg) });
+        tmp++;
+      }
+
+      const table = [`<div class="table-responsive"><table class="table table-dark table-striped align-middle">`,
+        `<thead><tr><th>Bracket</th><th class="text-end">XP to next</th><th class="text-end">Msgs @ your mult</th></tr></thead><tbody>`,
+        ...rows.map(r => `<tr><td>${r.L} → ${r.L+1}</td><td class="text-end">${r.xp.toLocaleString()}</td><td class="text-end">${r.msgs.toLocaleString()}</td></tr>`),
+        `</tbody></table></div>`].join('');
+      breakdownEl.innerHTML = `<div class="mb-2">From <strong>${cur}</strong> to <strong>${target}</strong></div>` + table;
+    }
+
+    function refresh(){ updateEligibility(); calc(); }
+
+    tierSel.addEventListener('change', refresh);
+    currentLevelEl.addEventListener('input', refresh);
+    targetLevelEl.addEventListener('input', refresh);
+    serverSuperchargeEl.addEventListener('change', refresh);
+    calcBtn.addEventListener('click', calc);
+
+    // Initial paint
+    refresh();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
