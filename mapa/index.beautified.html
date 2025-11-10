@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+  <!-- 
+      USTAWIENIA DOKUMENTU
+      - meta charset: kodowanie znaków UTF-8
+      - viewport: poprawna skala na urządzeniach mobilnych
+      - title: tytuł wyświetlany na karcie przeglądarki
+    -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asteraki – Mapy Duszy</title>
+  <!-- META SEO -->
+  <meta name="theme-color" content="#e9c0b8">
+  <meta name="description"
+    content="Mapy Duszy Asteraki – indywidualne odczyty Human Design prowadzące do głębszego zrozumienia siebie. Odkryj swoją prawdziwą naturę, z czułością i intuicją.">
+  <meta name="keywords"
+    content="Human Design, mapa duszy, Asteraki, odczyt duszy, rozwój duchowy, intuicja, astrologia, świadomość, samopoznanie, interpretacja mapy, mapa energetyczna, konsultacja duchowa, mapa osobista, Human Design Polska">
+  <meta name="author" content="Asteraki">
+  <meta name="robots" content="index, follow">
+
+  <!-- META OPEN GRAPH (Facebook, LinkedIn itp.) -->
+  <meta property="og:title" content="Asteraki – Mapy Duszy">
+  <meta property="og:description"
+    content="Mapy Duszy Asteraki – osobiste odczyty Human Design z przestrzeni serca. Odkryj swoją prawdziwą naturę.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mapyduszy.com/">
+  <meta property="og:image" content="https://mapyduszy.com/og-image.png">
+  <meta property="og:locale" content="pl_PL">
+
+  <!-- META TWITTER -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Asteraki – Mapy Duszy">
+  <meta name="twitter:description"
+    content="Poznaj siebie poprzez Human Design – Mapy Duszy tworzone z czułością i intuicją.">
+  <meta name="twitter:image" content="https://mapyduszy.com/og-image.png">
+  <link rel="preload" as="image" href="tlo.png" fetchpriority="high">
+
+  <!-- FAVICONY -->
+  <!-- FAVICON -->
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+
+  <!-- 
+      ZASOBY ZEWNĘTRZNE
+      - Bootstrap CSS z CDN
+      - Czcionki z Google Fonts (Italiana – nagłówki, Inter – tekst)
+      - Font Awesome – ikony (link do arkusza)
+    -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://paycoin-php.vercel.app/assets/css/fontawesome.css" />
+
+  <!-- 
+      STYLe WŁASNE (inline)
+      - Zmiennie CSS (kolory/akcenty)
+      - Ogólne ustawienia typografii i tła
+      - Komponenty: navbar, layout sekcji, hero, karty, przyciski, listy
+      - Modyfikacje ofert oraz drobne klasowe pomocnicze
+    -->
+  <style>
+    /* =======================
+   ZMIENNE KOLORY / BAZA
+   ======================= */
+    :root {
+      --bg-olive: #e9c0b8;
+      --accent: #0e0e0e;
+      /* Twój akcent (ciemny) */
+      --accent-600: #6f7d61;
+      /* zostawione pod hover, jeśli chcesz kiedyś wrócić do oliwki */
+      --ink: #2b2d29;
+      --muted: #5f635d;
+      --card-border: rgba(127, 141, 111, .28);
+      --ring: rgba(127, 141, 111, .35);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #e9c0b8;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      color: var(--ink);
+      background:
+        radial-gradient(60% 40% at 18% 0%, var(--bg-olive) 0%, transparent 70%),
+        linear-gradient(180deg, var(--bg-olive) 0%, #e9c0b8 36%, #e9c0b8 100%);
+    }
+
+    .display-serif {
+      font-family: "Italiana", sans-serif;
+      font-weight: 700;
+    }
+
+    /* Pasek dekoracyjnego ziarna tła */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background-image:
+        radial-gradient(rgba(0, 0, 0, .03) 1px, transparent 1px),
+        radial-gradient(rgba(0, 0, 0, .02) 1px, transparent 1px);
+      background-size: 3px 3px, 7px 7px;
+      background-position: 0 0, 1px 2px;
+      mix-blend-mode: multiply;
+    }
+
+    /* =======================
+   NAVBAR
+   ======================= */
+    .navbar {
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      box-shadow: none;
+      transition: background-color .3s, backdrop-filter .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .navbar.is-scrolled {
+      background: rgba(255, 255, 255, .10);
+      backdrop-filter: blur(10px);
+      border-bottom-color: rgba(0, 0, 0, .06);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+      color: #fff;
+    }
+
+    .navbar.is-open {
+      background: rgba(255, 255, 255, .95);
+      backdrop-filter: blur(10px);
+      border-bottom-color: rgba(0, 0, 0, .06);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+    }
+
+    .navbar .navbar-toggler {
+      border: 0;
+    }
+
+    .navbar .nav-link {
+      color: #4b4e48 !important;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .navbar .nav-link:hover {
+      color: var(--accent) !important;
+    }
+
+    .navbar .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      height: 2px;
+      width: 0;
+      background: var(--accent);
+      transition: width .25s ease;
+    }
+
+    .navbar .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .navbar-brand {
+      color: var(--accent);
+      font-weight: 700;
+      transition: color .3s;
+    }
+
+    .navbar .brand-logo {
+      height: 1.6em;
+      width: auto;
+      transition: filter .3s;
+    }
+
+    @media (max-width:576px) {
+      .navbar .brand-logo {
+        height: 1.4em;
+      }
+    }
+
+    /* =======================
+   SEKCJE / TYPO / PROSE
+   ======================= */
+    section {
+      padding: 4rem 0;
+    }
+
+    @media (min-width:992px) {
+      section {
+        padding: 5rem 0;
+      }
+    }
+
+    .container-narrow {
+      max-width: 900px;
+    }
+
+    .prose {
+      max-width: 70ch;
+    }
+
+    .prose p {
+      margin-bottom: 1rem;
+    }
+
+    #home,
+    #mapa,
+    #oferta,
+    #kontakt {
+      scroll-margin-top: 80px;
+    }
+
+    /* kotwice pod fixed nav */
+
+    /* =======================
+   HERO
+   ======================= */
+    .hero {
+      padding-top: 7.25rem;
+      padding-bottom: clamp(56px, 10vh, 128px);
+      min-height: 78vh;
+
+      background-image: url('tlo.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      --hero-bg-x: 50%;
+      --hero-bg-y: 50%;
+      background-position: var(--hero-bg-x) var(--hero-bg-y);
+
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: linear-gradient(to bottom,
+          rgba(255, 255, 255, .80) 0%,
+          rgba(255, 255, 255, .55) 35%,
+          rgba(255, 255, 255, .30) 60%,
+          rgba(255, 255, 255, .10) 85%,
+          rgba(255, 255, 255, 0) 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 18vh;
+      z-index: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #e9c0b8 100%);
+    }
+
+    @media (min-width:992px) {
+      .hero {
+        background-attachment: fixed;
+      }
+    }
+
+    /* Kadrowanie tła wygodnymi klasami */
+    .hero.pos-top {
+      --hero-bg-y: 10%;
+    }
+
+    .hero.pos-bottom {
+      --hero-bg-y: 90%;
+    }
+
+    .hero.pos-left {
+      --hero-bg-x: 10%;
+    }
+
+    .hero.pos-right {
+      --hero-bg-x: 90%;
+    }
+
+    .hero.pos-top-left {
+      --hero-bg-x: 10%;
+      --hero-bg-y: 10%;
+    }
+
+    .hero.pos-top-right {
+      --hero-bg-x: 90%;
+      --hero-bg-y: 10%;
+    }
+
+    .hero.pos-bot-left {
+      --hero-bg-x: 10%;
+      --hero-bg-y: 90%;
+    }
+
+    .hero.pos-bot-right {
+      --hero-bg-x: 90%;
+      --hero-bg-y: 90%;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin-inline: auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Logo w hero */
+    .hero-logo {
+      width: clamp(120px, 12vw, 180px);
+      max-width: none;
+      filter: brightness(0) saturate(100%) invert(39%) sepia(8%) saturate(514%) hue-rotate(61deg) brightness(92%) contrast(88%);
+    }
+
+    @media (prefers-reduced-motion:no-preference) {
+      .hero-logo {
+        animation: floaty 5s ease-in-out infinite;
+      }
+
+      @keyframes floaty {
+
+        0%,
+        100% {
+          transform: translateY(0)
+        }
+
+        50% {
+          transform: translateY(-6px)
+        }
+      }
+    }
+
+    /* Nagłówek i tekst w hero */
+    h1.display-5 {
+      font-size: clamp(2rem, 2.2vw + 1.2rem, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: .02em;
+      text-wrap: balance;
+    }
+
+    .hero .prose p {
+      line-height: 1.78;
+      letter-spacing: .012em;
+    }
+
+    /* Mobilne dopasowania */
+    @media (max-width:576px) {
+      .hero {
+        padding-top: 6.25rem;
+        min-height: 82vh;
+      }
+
+      .hero .prose {
+        padding-inline: 8px;
+      }
+    }
+
+    /* =======================
+   PILL (badge)
+   ======================= */
+    .pill {
+      --pill-bg: rgba(255, 255, 255, .82);
+      --pill-brd: rgba(0, 0, 0, .10);
+      --pill-fg: var(--accent);
+
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .45rem .8rem;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      color: var(--pill-fg);
+      border: 1px solid var(--pill-brd);
+      backdrop-filter: blur(6px);
+      letter-spacing: .06em;
+      font-weight: 700;
+      font-size: clamp(13px, .8vw + 10px, 15px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .06);
+    }
+
+    .pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(127, 141, 111, .20);
+    }
+
+    @media (hover:hover) {
+      .pill:hover {
+        background: rgba(255, 255, 255, .9);
+      }
+    }
+
+    /* =======================
+   BUTTONS
+   ======================= */
+    .button {
+      --btn-bg: #fff;
+      --btn-fg: #000;
+      --btn-brd: #000;
+      --btn-shadow: 0 6px 16px rgba(0, 0, 0, .06);
+      --btn-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      padding: 14px 20px;
+      border: 1px solid var(--btn-brd);
+      border-radius: var(--btn-radius);
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      font-weight: 500;
+      text-decoration: none;
+      box-shadow: var(--btn-shadow);
+      transition: transform .22s cubic-bezier(.2, .7, .3, 1), box-shadow .22s, background-color .22s, color .22s, border-color .22s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
+    }
+
+    .button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .06);
+    }
+
+    .button:focus-visible {
+      outline: 0;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .08), 0 0 0 3px #fff, 0 0 0 6px rgba(127, 141, 111, .45);
+    }
+
+    .button[disabled],
+    .button.is-loading {
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    .button--primary {
+      --btn-bg: #000;
+      --btn-fg: #fff;
+      --btn-brd: #000;
+    }
+
+    .button--primary:hover {
+      filter: brightness(.95);
+    }
+
+    .button--primary:active {
+      filter: brightness(.9);
+    }
+
+    .button--warm {
+      --btn-bg: #e9c0b8;
+      --btn-fg: #2b2d29;
+      --btn-brd: rgba(0, 0, 0, .22);
+    }
+
+    .button--ghost {
+      --btn-bg: rgba(255, 255, 255, .78);
+      --btn-fg: #2b2d29;
+      --btn-brd: rgba(0, 0, 0, .18);
+      backdrop-filter: blur(6px);
+    }
+
+    .button--ghost:hover {
+      --btn-bg: rgba(255, 255, 255, .92);
+    }
+
+    .button--outline {
+      --btn-bg: transparent;
+      --btn-fg: var(--accent);
+      --btn-brd: var(--accent);
+    }
+
+    .button--outline:hover {
+      --btn-bg: rgba(127, 141, 111, .08);
+    }
+
+    .button--lg {
+      padding: 16px 24px;
+      font-size: 1.05rem;
+      border-radius: 12px;
+    }
+
+    .button--sm {
+      padding: 10px 14px;
+      font-size: .9rem;
+      border-radius: 9px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+    }
+
+    @media (max-width:576px) {
+      .button-row {
+        flex-direction: column;
+      }
+
+      .button-row .button {
+        width: 100%;
+      }
+    }
+
+    /* =======================
+   SCROLL HINT (jeden wariant)
+   ======================= */
+    .scroll-hint-link {
+      position: static;
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem .8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .75);
+      color: #2b2d29;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid rgba(0, 0, 0, .08);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .06);
+    }
+
+    .scroll-hint-link .chev {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+      animation: bounce 1.8s infinite;
+    }
+
+    .scroll-hint-link .chev.delay {
+      animation-delay: .2s;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      50% {
+        transform: translateY(4px) rotate(45deg);
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .scroll-hint-link .chev {
+        animation: none;
+      }
+    }
+
+    /* Na >= md przypnij do dołu hero */
+    @media (min-width:768px) {
+      .scroll-hint-link {
+        position: absolute;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        margin-top: 0;
+      }
+    }
+
+    /* Stary wariant chowamy, jeśli został w HTML */
+    .scroll-hint {
+      display: none !important;
+    }
+
+    /* =======================
+   KARTY / LISTY / OFERTA
+   ======================= */
+    .card-soft {
+      background: #f3d1ca;
+      border: 1px solid var(--card-border);
+      border-radius: 1.25rem;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .04);
+    }
+
+    .card-accent {
+      border-top: 4px solid var(--accent);
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ring), transparent);
+    }
+
+    .list-check {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .list-check li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin: .35rem 0;
+      color: var(--muted);
+    }
+
+    .list-check li::before {
+      font-family: "Font Awesome 6 Pro";
+      font-weight: 900;
+      content: "\f00c";
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1;
+      color: var(--accent);
+      font-size: .95rem;
+    }
+
+    .label-pill {
+      display: inline-block;
+      padding: .35rem .7rem;
+      border-radius: 999px;
+      background: rgba(127, 141, 111, .14);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .price {
+      color: #000;
+      font-weight: 700;
+    }
+
+    #oferta .offer-card {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: .5rem;
+    }
+
+    #oferta .offer-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: .25rem;
+    }
+
+    #oferta .offer-foot p {
+      margin: 0;
+    }
+
+    @media (max-width:420px) {
+      #oferta .offer-foot {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    /* =======================
+   ANIMACJE „reveal”
+   ======================= */
+    @media (prefers-reduced-motion:no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        filter: blur(2px);
+        transition: opacity .6s, transform .6s, filter .6s;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    /* 1) Wycentruj przyciski CTA w hero */
+    .hero .button-row,
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      justify-content: center;
+      /* <— centracja */
+    }
+
+    /* Dla pewności wycentruj cały blok hero */
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 2) Scroll hint NIE nachodzi na przyciski – jest pod CTA */
+    .scroll-hint-link {
+      position: static !important;
+      /* żadnego absolute */
+      transform: none !important;
+      margin-top: 16px;
+      /* odstęp pod CTA */
+      z-index: 0;
+      /* na wszelki wypadek niżej niż CTA */
+    }
+
+    /* 3) Daj miejsce u dołu hero, żeby był oddech */
+    .hero {
+      padding-bottom: clamp(56px, 10vh, 128px);
+    }
+
+    /* 4) Mobile – przyciski pełna szerokość */
+    @media (max-width:576px) {
+      .button-row .button {
+        width: 100%;
+      }
+    }
+
+    /* (opcjonalnie) Jeśli masz starą wersję wskaźnika, ukryj ją */
+    .scroll-hint {
+      display: none !important;
+    }
+
+    .podstawowy {}
+
+    .poglebiony {
+      color: #cb4444;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =======================
+         NAWIGACJA GŁÓWNA
+         - stała u góry (fixed-top)
+         - linki przewijają do sekcji na stronie (kotwice)
+         ======================= -->
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Główna nawigacja">
+    <div class="container">
+      <a class="navbar-brand display-serif d-flex align-items-center gap-2" href="#home">
+        MAPY
+        <img src="mapyduszy.svg" alt="Logo Mapy Duszy" class="brand-logo" />
+        DUSZY
+      </a>
+
+
+      <!-- Przycisk hamburger dla urządzeń mobilnych -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav"
+        aria-expanded="false" aria-label="Menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Zwijane menu nawigacji -->
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto small text-uppercase">
+          <li class="nav-item"><a class="nav-link" href="#home">Start</a></li>
+          <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#oferta">Oferta</a></li>
+          <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =======================
+         SEKCJA HERO (Powitanie)
+         - centralne wyrównanie (bez przesunięcia bocznego)
+         - krótki wstęp i przyciski CTA
+         ======================= -->
+  <header id="home" class="hero pos-top-right">
+    <div class="container">
+      <div class="hero-inner">
+        <img src="mapyduszy.svg" alt="Logo Mapy Duszy" class="hero-logo mb-3 gap-3" /><br>
+        <span class="badge rounded-pill pill mb-3">Human Design • Przestrzeń Serca</span>
+        <h1 class="display-5 display-serif mb-3">Witaj w mojej przestrzeni Map Duszy</h1>
+
+        <!-- Tekst wstępny (proza) -->
+        <div class="prose">
+          <p>
+            Nazywam się <strong>Asteraki</strong>. To moje duchowe imię – i pamięć tego,
+            kim jestem naprawdę.
+          </p>
+          <p>
+            Mapy, które tworzę, to nie są tylko analizy. To przewodniki stworzone z intencją,
+            intuicją i miłością – prowadzące Cię do miejsca, gdzie Twoja dusza może znów oddychać.
+          </p>
+          <p>
+            Jeśli czujesz, że nadszedł czas, by zobaczyć siebie inaczej – bez masek, bez presji,
+            z czułością – jesteś we właściwym miejscu.
+          </p>
+
+          <!-- Przyciski wezwania do działania (CTA) -->
+          <div class="button-row mt-3 cta">
+            <a href="#oferta" class="button button--primary">Zobacz ofertę</a>
+            <a href="#mapa" class="button button--ghost">Czym jest mapa?</a>
+          </div>
+          <br><br><br>
+          <a href="#mapa" class="scroll-hint-link" aria-label="Przewiń do sekcji «Czym jest Mapa Duszy»">
+            Odkryj więcej <span class="chev delay"></span>
+          </a>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Dzielnik dekoracyjny -->
+  <div class="divider" role="separator" aria-hidden="true"></div>
+
+  <!-- =======================
+         SEKCJA: Czym jest Mapa Duszy
+         - opis koncepcji i kontekstu Human Design
+         ======================= -->
+  <section id="mapa" aria-labelledby="mapa-heading">
+    <div class="container container-narrow">
+      <h2 id="mapa-heading" class="display-serif text-center mb-4">
+        Czym jest Mapa Duszy
+      </h2>
+
+      <div class="prose mx-auto">
+        <p>
+          Choć na pierwszy rzut oka <strong>Human Design</strong> może wydawać się systemem –
+          w istocie nigdy nim nie był. To nie teoria, lecz wiedza, która porządkuje nasze pole
+          energetyczne, przywraca duszy jej kierunek i pozwala powrócić do prawdziwego siebie.
+        </p>
+        <p>
+          Human Design łączy w sobie starożytną mądrość i współczesną precyzję: astrologię,
+          numerologię, kabałę, I Ching oraz wiedzę Majów.
+        </p>
+        <p>
+          Dla mnie stał się odkryciem, które rozświetliło moje życie, uporządkowało moją
+          przestrzeń i wniosło radość. Nauczył mnie, jak funkcjonować w dobrostanie – tu i teraz.
+        </p>
+        <p>
+          Mapy Duszy, które tworzę, są intuicyjnym przewodnikiem. Powstają na bazie Twojego
+          grafu Human Design, ale to, co najważniejsze – płynie spoza słów.
+        </p>
+        <p>
+          Gdy zaprosisz Human Design do swojego życia, możesz poczuć, że to brakujący puzel
+          układanki. Pomogę Ci go odczytać i zrozumieć.
+        </p>
+        <p>
+          Przeszłam swoją drogę eksperymentu – by teraz móc towarzyszyć Tobie. Czuj się tu
+          swobodnie. To przestrzeń serca.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dzielnik dekoracyjny -->
+  <div class="divider" role="separator" aria-hidden="true"></div>
+
+  <!-- =======================
+         SEKCJA: Oferta
+         - dwie karty: Podstawowy i Pogłębiony odczyt
+         - ceny, zakres, CTA
+         ======================= -->
+  <section id="oferta" aria-labelledby="oferta-heading">
+    <div class="container container-narrow">
+      <h2 id="oferta-heading" class="display-serif text-center mb-4">Oferta</h2>
+
+      <div class="row g-4">
+        <!-- KARTA: Podstawowy odczyt -->
+        <div class="col-md-6">
+          <div class="card-soft offer-card p-4 h-100">
+            <!-- Pasek tytułowy karty (etykieta + cena) -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="label-pill podstawowy">Podstawowy</span>
+              <span class="price">300 zł</span>
+            </div>
+
+            <h3 class="h5 mb-2">Odczyt Mapy Duszy</h3>
+
+            <!-- Lista elementów w pakiecie -->
+            <div>
+              <p class="mb-2 fw-semibold">Zawiera:</p>
+              <ul class="list-check small mb-0">
+                <li>spersonalizowaną interpretację Twojej mapy (ok. 10–15 stron PDF)</li>
+                <li>możliwość konsultacji online (do 60 minut)</li>
+              </ul>
+            </div>
+
+            <!-- Dla kogo (opis odbiorcy) -->
+            <div class="offer-foot">
+              <p class="small text-muted">
+                <span class="fw-semibold">Dla kogo?</span>
+                Dla tych, którzy chcą poznać swój typ, strategię, autorytet, profil, centra –
+                i rozpocząć własny eksperyment z Human Design w łagodny sposób.
+              </p>
+            </div>
+
+            <!-- CTA karty -->
+            <a href="#kontakt" class="button button--warm button--block">Umów odczyt</a>
+          </div>
+        </div>
+
+        <!-- KARTA: Pogłębiony odczyt -->
+        <div class="col-md-6">
+          <div class="card-soft offer-card p-4 h-100">
+            <!-- Pasek tytułowy karty (etykieta + cena) -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="label-pill poglebiony">Pogłębiony</span>
+              <span class="price">600 zł</span>
+            </div>
+
+            <h3 class="h5 mb-2">Odczyt Mapy Duszy</h3>
+
+            <!-- Lista elementów w pakiecie -->
+            <div>
+              <p class="mb-2 fw-semibold">Zawiera:</p>
+              <ul class="list-check small mb-0">
+                <li>całościową interpretację z uwzględnieniem:</li>
+                <li class="ms-3">– bram i kanałów</li>
+                <li class="ms-3">– PHS (zmysłowej orientacji)</li>
+                <li class="ms-3">– View &amp; Motivation (architektury percepcji)</li>
+                <li>konsultację online (do 90 minut)</li>
+                <li>możliwość zadania dodatkowych pytań po odczycie</li>
+              </ul>
+            </div>
+
+            <!-- Dla kogo (opis odbiorcy) -->
+            <div class="offer-foot">
+              <p class="small text-muted">
+                <span class="fw-semibold">Dla kogo?</span>
+                Dla tych, którzy chcą wejść głębiej – poczuć siebie w systemie, ale również poza nim.
+                To odczyt dla Dusz świadomych, poszukujących, gotowych na transformację.
+              </p>
+            </div>
+
+            <!-- CTA karty -->
+            <a href="#kontakt" class="button button--warm button--block">Umów odczyt</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dzielnik dekoracyjny -->
+  <div class="divider" role="separator" aria-hidden="true"></div>
+
+  <!-- =======================
+         SEKCJA: Kontakt
+         - dane kontaktowe i przyciski do akcji (mail/IG)
+         ======================= -->
+  <section id="kontakt" aria-labelledby="kontakt-heading">
+    <div class="container container-narrow">
+      <div class="card-soft p-4 p-lg-5 text-center">
+        <h2 id="kontakt-heading" class="display-serif mb-2">Kontakt</h2>
+
+        <p class="mb-3">
+          Mapy przygotowuję po zaksięgowaniu przelewu – termin ustalamy wspólnie.
+          <br />
+          W wiadomości podaj: <strong>datę, godzinę i miejsce urodzenia</strong>.
+        </p>
+
+        <!-- Przyciski akcji -->
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+          <a href="mailto:mapyduszy@gmail.com" class="button">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span class="visually-hidden">Napisz wiadomość e-mail</span>
+            Napisz maila
+          </a>
+          <a href="https://instagram.com/mapyduszy" target="_blank" rel="noopener" class="button">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <span class="visually-hidden">Odwiedź profil Instagram</span>
+            Odwiedź Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+         STOPKA / KLAUZULA
+         - uwagi formalne i źródła grafów
+         ======================= -->
+  <footer class="py-4">
+    <div class="container small container-narrow">
+      <p class="mb-2">
+        Uwaga: Odczyty Map Duszy mają charakter rozwojowy i nie stanowią diagnozy
+        medycznej ani psychologicznej. Praca z Mapą to zaproszenie do samopoznania,
+        nie zastępuje konsultacji specjalistycznych.
+      </p>
+      <p class="mb-0">
+        Grafy Human Design generowane są w systemie Genetic Matrix. Interpretacja i forma
+        przekazu są autorskie.
+      </p>
+    </div>
+  </footer>
+
+  <!-- 
+      SKRYPTY
+      - Bootstrap JS (bundle ze wsparciem Popper)
+      - Ikony Font Awesome (używane powyżej) wczytywane przez podany CSS
+    -->
+  <script>
+    (function () {
+      const navbar = document.querySelector('.navbar');
+      const collapse = document.getElementById('nav');
+
+      function syncNavBg() {
+        if (window.scrollY > 8) {
+          navbar.classList.add('is-scrolled');
+        } else {
+          navbar.classList.remove('is-scrolled');
+        }
+      }
+
+      // stan początkowy + nasłuchiwanie scrolla
+      syncNavBg();
+      window.addEventListener('scroll', syncNavBg, { passive: true });
+
+      // gdy menu mobilne się rozwija/zwija – dodaj/usuń klasę tła
+      if (collapse) {
+        collapse.addEventListener('shown.bs.collapse', () => navbar.classList.add('is-open'));
+        collapse.addEventListener('hidden.bs.collapse', () => navbar.classList.remove('is-open'));
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      // reveal na wejściu sekcji i kart
+      const els = document.querySelectorAll('.hero .prose, .hero .cta, #mapa h2, #mapa .prose, #oferta h2, #oferta .offer-card, #kontakt .card-soft');
+      els.forEach(el => el.classList.add('reveal'));
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
+
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
